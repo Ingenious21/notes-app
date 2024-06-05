@@ -58,7 +58,7 @@ function displayNotes() {
         let displayHTML = '';
         for (let i = 0; i < notes.length; i++) {
             let note = notes[i];
-            displayHTML += `<div class="note-card col-md-3 col-sm-3 bg-light ml-5 mt-2 mb-2" 
+            displayHTML += `<div class="note-card col-md-2 col-sm-3 bg-light ml-4 mt-4" 
             style="border-radius: 5px; height: 200px; max-height: 300px; overflow-y: scroll; box-sizing: border-box">
                 <h2>${note.title}</h2>
                 <h6>${note.date}</h6>
