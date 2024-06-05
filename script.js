@@ -34,8 +34,8 @@ document.getElementById('note-form').addEventListener('submit', function(event) 
         saveNote();
         displayNotes();
         document.getElementById('note-form').reset();
-            $('#viewModal').modal('hide');
     }
+    $('#viewModal').modal('hide');
 });
 
 // Function to save the note to local storage
