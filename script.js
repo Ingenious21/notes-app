@@ -59,13 +59,18 @@ function displayNotes() {
         for (let i = 0; i < notes.length; i++) {
             let note = notes[i];
             displayHTML += `<div class="note-card col-md-2 col-sm-3 bg-light ml-4 mt-4" 
-            style="border-radius: 5px; height: 200px; max-height: 300px; overflow-y: scroll; box-sizing: border-box">
-                <h2>${note.title}</h2>
-                <h6>${note.date}</h6>
-                <p>${note.text}</p>
-                <button class="btn btn-danger delete-btn mb-2" data-note-index="${i}">Delete</button>
-                <button class="btn btn-primary edit-btn mb-2" data-note-index="${i}" data-toggle="modal" data-target="#editModal">Edit</button>
+            style="border-radius: 5px; height: 200px; height: 300px; box-sizing: border-box">
+                <div class="card-body" style="height: 200px; max-height:200px; overflow-y: scroll; box-sizing: border-box">
+                    <h2 style="font-weight: bolder">${note.title}</h2>
+                    <h6>${note.date}</h6>
+                    <p>${note.text}</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-danger delete-btn mb-2" data-note-index="${i}">Delete</button>
+                    <button class="btn btn-primary edit-btn mb-2" data-note-index="${i}" data-toggle="modal" data-target="#editModal">Edit</button>
+                </div>
             </div>`;
+        
         }
         document.getElementById('notes-display').innerHTML = displayHTML;
     }
