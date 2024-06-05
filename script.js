@@ -156,3 +156,5 @@ document.body.addEventListener('click', function(event) {
 
 // Initial display of notes
 displayNotes();
+
+document.getElementById('currentYear').textContent = new Date().getFullYear();
