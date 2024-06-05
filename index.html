@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+    crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="py-3">
+            <div class="container d-flex justify-content-between align-items-center">
+                <a href="index.html">
+                    <img src="history-icon-front-side-white-background.jpg" alt="Logo" class="img-fluid" style="height: 50px;">
+                </a>
+        </header>
+
+        <div class="row mt-4">
+            <div class="col-md-2 col-sm-2">
+                <button type="button" class="btn btn-primary create-btn" data-toggle="modal" data-target="#create-notes" id="create-btn">Create Notes</button>
+            </div>
+        </div>
+
+        <!-- Modal for creating the text-->
+        <div class="modal fade" id="create-notes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create New Notes</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="note-form">
+                            <div class="form-group">
+                                <label for="note-title">Title</label>
+                                <input type="text" class="form-control" id="note-title" aria-describedby="emailHelp" placeholder="Example: How I Spent the Day.">
+                            </div>
+                            <div class="form-group">
+                                <label for="note-input">Notes</label>
+                                <textarea class="form-control" id="note-input" rows="3" placeholder="Enter your notes here..."></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Discard</button>
+                                <button type="submit" class="btn btn-primary">Save Note</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container to display notes -->
+        <div id="notes-display" class="row mt-4">
+            <!-- Notes will be dynamically added here -->
+        </div>
+
+        <!-- Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Note</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-note-form">
+                        <div class="form-group">
+                            <label for="edit-note-title">Title</label>
+                            <input type="text" class="form-control" id="edit-note-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-note-input">Note</label>
+                            <textarea class="form-control" id="edit-note-input" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
