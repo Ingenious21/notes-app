@@ -35,7 +35,7 @@ document.getElementById('note-form').addEventListener('submit', function(event) 
         displayNotes();
         document.getElementById('note-form').reset();
     }
-    $('#viewModal').modal('hide');
+
 });
 
 // Function to save the note to local storage
@@ -49,6 +49,9 @@ function saveNote() {
     }
     notes.push(note);
     localStorage.setItem('notes', JSON.stringify(notes));
+
+    // Add this line to hide the create notes modal after saving
+    $('#create-notes').modal('hide');
 }
 
 // Function to update the note in local storage
