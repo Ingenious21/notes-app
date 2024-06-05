@@ -8,6 +8,13 @@ function getText() {
 function createNote() {
     let title = document.getElementById('note-title').value;
     let text = document.getElementById('note-input').value;
+
+    // Check if title and text are not empty
+    if (title.trim() === '' || text.trim() === '') {
+        alert('Please enter both title and note text.');
+        return null; // Return null if either title or text is empty
+    }
+
     let date = new Date().toLocaleString();
     let note = {
         title: title,
@@ -20,10 +27,15 @@ function createNote() {
 // Event listener for the save button
 document.getElementById('note-form').addEventListener('submit', function(event) {
     event.preventDefault();
-    saveNote();
-    displayNotes();
-    document.getElementById('note-form').reset();
-    $('#create-notes').modal('hide');
+
+    // Check if both title and text are not empty before proceeding
+    let note = createNote();
+    if (note) {
+        saveNote();
+        displayNotes();
+        document.getElementById('note-form').reset();
+        window.location.href = '/';  // Redirect to home screen
+    }
 });
 
 // Function to save the note to local storage
@@ -58,19 +70,19 @@ function displayNotes() {
         let displayHTML = '';
         for (let i = 0; i < notes.length; i++) {
             let note = notes[i];
-            displayHTML += `<div class="note-card col-md-2 col-sm-3 bg-light ml-4 mt-4" 
-            style="border-radius: 5px; height: 200px; height: 300px; box-sizing: border-box">
+            displayHTML += `<div class="note-card col-md-3 col-sm-2 bg-light ml-5 mr-5 mt-3 mb-3" 
+            style="border-radius: 5px; height: 400px; box-sizing: border-box; overflow-y: scroll">
                 <div class="card-body" style="height: 200px; max-height:200px; overflow-y: scroll; box-sizing: border-box">
                     <h2 style="font-weight: bolder">${note.title}</h2>
                     <h6>${note.date}</h6>
                     <p>${note.text}</p>
                 </div>
-                <div class="card-footer">
-                    <button class="btn btn-danger delete-btn mb-2" data-note-index="${i}">Delete</button>
+                <div class="card-footer d-flex flex-column justify-content-center">
+                    <button class="btn btn-info view-btn mb-2" data-note-index="${i}" data-toggle="modal" data-target="#viewModal">View</button>
                     <button class="btn btn-primary edit-btn mb-2" data-note-index="${i}" data-toggle="modal" data-target="#editModal">Edit</button>
+                    <button class="btn btn-danger delete-btn mb-2" data-note-index="${i}">Delete</button>
                 </div>
             </div>`;
-        
         }
         document.getElementById('notes-display').innerHTML = displayHTML;
     }
@@ -86,6 +98,20 @@ function deleteNote(index) {
     }
     displayNotes();
 }
+
+// Function to view a note
+function viewNoteModal(index) {
+    let notes = localStorage.getItem('notes');
+    if (notes) {
+        notes = JSON.parse(notes);
+        let note = notes[index];
+        document.getElementById('view-note-title').textContent = note.title;
+        document.getElementById('view-note-date').textContent = note.date;
+        document.getElementById('view-note-text').textContent = note.text;
+            $('#viewModal').modal('hide');
+        };
+    }
+
 
 // Function to edit a note
 function editNoteModal(index) {
@@ -114,7 +140,7 @@ function editNoteModal(index) {
     }
 }
 
-// Event listener for the delete and edit buttons
+// Event listener for the delete, edit, and view buttons
 document.body.addEventListener('click', function(event) {
     if (event.target.classList.contains('delete-btn')) {
         let index = event.target.getAttribute('data-note-index');
@@ -122,6 +148,9 @@ document.body.addEventListener('click', function(event) {
     } else if (event.target.classList.contains('edit-btn')) {
         let index = event.target.getAttribute('data-note-index');
         editNoteModal(index);
+    } else if (event.target.classList.contains('view-btn')) {
+        let index = event.target.getAttribute('data-note-index');
+        viewNoteModal(index);
     }
 });
 
