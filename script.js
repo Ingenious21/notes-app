@@ -34,6 +34,7 @@ document.getElementById('note-form').addEventListener('submit', function(event) 
         saveNote();
         displayNotes();
         document.getElementById('note-form').reset();
+        window.location.href = 'index.html';  // Redirect to home screen
     }
 });
 
